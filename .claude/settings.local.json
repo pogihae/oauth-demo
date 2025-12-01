@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(./gradlew clean build:*)",
+      "Bash(tree:*)",
+      "Bash(./gradlew :oauth-core:clean:*)",
+      "Bash(find:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

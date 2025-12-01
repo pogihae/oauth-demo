@@ -1,0 +1,25 @@
+plugins {
+    id 'org.springframework.boot'
+}
+
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = true
+}
+
+dependencies {
+    // Core Module (Domain + Application)
+    implementation project(':oauth-core')
+
+    // Spring Data JPA
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // H2 Database (개발용)
+    runtimeOnly 'com.h2database:h2'
+
+    // MySQL Driver (운영용)
+    runtimeOnly 'com.mysql:mysql-connector-j'
+}

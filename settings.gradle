@@ -1,0 +1,13 @@
+rootProject.name = 'oauth-demo'
+
+// Core (Domain + Application Layer - Pure Business Logic)
+include 'oauth-core'
+
+// Adapter Modules (Hexagonal Architecture - Outbound Adapters)
+include 'oauth-adapter-jpa'         // JPA Repository Adapter
+include 'oauth-adapter-redis'       // Redis Cache Adapter
+
+// Application Modules (Independently Deployable)
+include 'oauth-app-api'       // Public API Server
+include 'oauth-app-admin'     // Admin Server
+include 'oauth-app-server'    // OAuth2 Authorization Server

@@ -1,0 +1,19 @@
+plugins {
+    id 'org.springframework.boot'
+}
+
+dependencies {
+    // Core Module (Domain + Application Logic)
+    implementation project(':oauth-core')
+
+    // Infrastructure Modules (Adapters)
+    implementation project(':oauth-adapter-jpa')
+    implementation project(':oauth-adapter-redis')
+
+    // Spring Web MVC
+    implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+
+    // Spring Security OAuth2 Authorization Server
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-authorization-server'
+}

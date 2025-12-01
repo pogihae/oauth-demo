@@ -1,0 +1,25 @@
+plugins {
+    id 'org.springframework.boot'
+}
+
+dependencies {
+    // Core Module (Domain + Application Logic)
+    implementation project(':oauth-core')
+
+    // Infrastructure Modules (Adapters)
+    implementation project(':oauth-adapter-jpa')
+    implementation project(':oauth-adapter-redis')
+
+    // Spring Web MVC
+    implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+
+    // Thymeleaf
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+    // Spring Security
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+
+    // DevTools for live reload (optional)
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+}
