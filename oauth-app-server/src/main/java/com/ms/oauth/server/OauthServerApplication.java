@@ -2,12 +2,8 @@ package com.ms.oauth.server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@SpringBootApplication(scanBasePackages = "com.ms.oauth")
-@EntityScan("com.ms.oauth.core.domain")
-@EnableJpaRepositories("com.ms.oauth.core.repository")
+@SpringBootApplication(scanBasePackages = {"com.ms.oauth.core", "com.ms.oauth.infrastructure.jpa"})
 public class OauthServerApplication {
 
     public static void main(String[] args) {

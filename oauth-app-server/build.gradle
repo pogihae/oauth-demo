@@ -16,4 +16,8 @@ dependencies {
     // Spring Security OAuth2 Authorization Server
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-authorization-server'
+
+    // Spring Thymeleaf
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
 }
