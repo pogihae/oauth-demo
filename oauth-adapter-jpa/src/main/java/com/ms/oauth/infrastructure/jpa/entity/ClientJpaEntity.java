@@ -2,8 +2,10 @@ package com.ms.oauth.infrastructure.jpa.entity;
 
 import com.ms.oauth.core.domain.client.ClientSettings;
 import com.ms.oauth.core.domain.client.ClientStatus;
+import com.ms.oauth.core.domain.client.GrantType;
 import com.ms.oauth.core.domain.client.TokenSettings;
 import com.ms.oauth.infrastructure.jpa.converter.ClientSettingsConverter;
+import com.ms.oauth.infrastructure.jpa.converter.GrantTypeSetConverter;
 import com.ms.oauth.infrastructure.jpa.converter.StringSetConverter;
 import com.ms.oauth.infrastructure.jpa.converter.TokenSettingsConverter;
 import jakarta.persistence.*;
@@ -39,10 +41,10 @@ public class ClientJpaEntity extends BaseEntity {
     @Builder.Default
     private Set<String> redirectUris = new HashSet<>();
 
-    @Convert(converter = StringSetConverter.class)
+    @Convert(converter = GrantTypeSetConverter.class)
     @Column(length = 1000)
     @Builder.Default
-    private Set<String> grantTypes = new HashSet<>();
+    private Set<GrantType> grantTypes = new HashSet<>();
 
     @Convert(converter = StringSetConverter.class)
     @Column(length = 1000)

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -38,34 +39,8 @@ public class ClientOutPortAdapter implements ClientOutPort {
     }
 
     @Override
-    public Optional<Client> findByClientName(String clientName) {
-        return jpaRepository.findByClientName(clientName)
-                .map(mapper::toDomain);
-    }
-
-    @Override
-    public List<Client> findAll() {
-        return jpaRepository.findAll().stream()
-                .map(mapper::toDomain)
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public List<Client> findAllByStatus(ClientStatus status) {
-        return jpaRepository.findAllByStatus(status).stream()
-                .map(mapper::toDomain)
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public boolean existsByClientName(String clientName) {
-        return jpaRepository.existsByClientName(clientName);
-    }
-
-    @Override
-    public void delete(Client client) {
-        ClientJpaEntity entity = mapper.toEntity(client);
-        jpaRepository.delete(entity);
+    public boolean existsAllByClientIdIn(Set<String> clientIds) {
+        return jpaRepository.existsAllByClientIdIn(clientIds);
     }
 
     @Override

@@ -1,6 +1,6 @@
-package com.ms.oauth.core.application.port.in.account;
+package com.ms.oauth.core.application.port.in.client;
 
-public interface EncodePasswordPort {
+public interface EncodeClientPasswordPort {
 
     String encodePassword(String rawPassword);
 

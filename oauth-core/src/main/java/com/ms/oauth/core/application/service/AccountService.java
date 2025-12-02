@@ -2,7 +2,7 @@ package com.ms.oauth.core.application.service;
 
 import com.ms.oauth.core.application.command.CreateAccountCommand;
 import com.ms.oauth.core.application.port.in.account.*;
-import com.ms.oauth.core.application.port.in.account.EncodePasswordPort;
+import com.ms.oauth.core.application.port.in.account.EncodeAccountPasswordPort;
 import com.ms.oauth.core.application.port.out.ClientOutPort;
 import com.ms.oauth.core.common.exception.ErrorCode;
 import com.ms.oauth.core.common.exception.ServerException;
@@ -30,14 +30,14 @@ public class AccountService implements CreateAccountUseCase, GetAccountQuery {
 
     private final ClientOutPort clientOutPort;
 
-    private final EncodePasswordPort encodePasswordPort;
+    private final EncodeAccountPasswordPort encodeAccountPasswordPort;
 
     /**
      * Account 생성
      */
     @Override
     @Transactional
-    public Account addAccount(@Valid CreateAccountCommand command) {
+    public Account createAccount(@Valid CreateAccountCommand command) {
 
         // Account ID 중복 확인
         if (accountOutPort.existsById(command.accountId())) {
@@ -55,12 +55,12 @@ public class AccountService implements CreateAccountUseCase, GetAccountQuery {
         }
 
         // 유효한 Client ID 확인
-        if (!clientOutPort.validateIds(command.accessibleClientIds())) {
+        if (!clientOutPort.existsAllByClientIdIn(command.accessibleClientIds())) {
             throw new ServerException(ErrorCode.INVALID_ARGUMENT, "Invalid Client IDs");
         }
 
         // 비밀번호 암호화
-        String encodedPassword = encodePasswordPort.encodePassword(command.password());
+        String encodedPassword = encodeAccountPasswordPort.encodePassword(command.password());
 
         Account account = Account.create(
                 command.accountId(),

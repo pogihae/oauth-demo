@@ -24,7 +24,7 @@ public interface ClientOutPort {
     /**
      * Client ID 검증용
      */
-    boolean validateIds(Set<String> clientIds);
+    boolean existsAllByClientIdIn(Set<String> clientIds);
 
     /**
      * Client 삭제 by ID

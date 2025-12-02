@@ -1,13 +1,14 @@
 package com.ms.oauth.core.application.service;
 
-import com.ms.oauth.core.application.port.in.account.EncodePasswordPort;
+import com.ms.oauth.core.application.port.in.account.EncodeAccountPasswordPort;
+import com.ms.oauth.core.application.port.in.client.EncodeClientPasswordPort;
 import org.springframework.stereotype.Service;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 @Service
-public class EncodePasswordService implements EncodePasswordPort {
+public class EncodePasswordService implements EncodeAccountPasswordPort, EncodeClientPasswordPort {
 
     private static MessageDigest digest;
 

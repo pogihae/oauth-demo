@@ -41,6 +41,21 @@ public class AccountOutPortAdapter implements AccountOutPort {
     }
 
     @Override
+    public Optional<Account> findByPhoneNo(String phoneNo) {
+        return Optional.empty();
+    }
+
+    @Override
+    public boolean existsById(String accountId) {
+        return jpaRepository.existsById(accountId);
+    }
+
+    @Override
+    public boolean existsByPhoneNo(String phoneNo) {
+        return jpaRepository.existsByPhoneNo(phoneNo);
+    }
+
+    @Override
     public boolean existsByEmail(String email) {
         return jpaRepository.existsByEmail(email);
     }

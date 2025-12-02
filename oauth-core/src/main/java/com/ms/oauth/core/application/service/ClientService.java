@@ -2,13 +2,17 @@ package com.ms.oauth.core.application.service;
 
 import com.ms.oauth.core.application.command.CreateClientCommand;
 import com.ms.oauth.core.application.port.in.client.CreateClientUseCase;
+import com.ms.oauth.core.application.port.in.client.EncodeClientPasswordPort;
+import com.ms.oauth.core.application.port.in.client.GetClientQuery;
+import com.ms.oauth.core.application.port.out.ClientOutPort;
 import com.ms.oauth.core.domain.client.*;
-import com.ms.oauth.core.domain.customer.CustomerId;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
+
+import java.util.Optional;
 
 /**
  * OAuth Client Application Service
@@ -18,40 +22,38 @@ import org.springframework.validation.annotation.Validated;
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
-public class ClientService implements CreateClientUseCase {
+public class ClientService implements CreateClientUseCase, GetClientQuery {
+
+    private final ClientOutPort clientOutPort;
+
+    private final EncodeClientPasswordPort encodeClientPasswordPort;
 
     /**
      * OAuth Client 등록
      */
     @Override
     @Transactional
-    public Client register(@Valid CreateClientCommand command) {
+    public Client createClient(@Valid CreateClientCommand command) {
 
-        // Client 생성
-        Client client;
-        if (command.getClientSettings() != null || command.getTokenSettings() != null) {
-            client = Client.create(
-                customerId,
-                command.getClientName(),
-                command.getClientSecret(),
-                command.getRedirectUris(),
-                command.getGrantTypes(),
-                command.getScopes(),
-                command.getClientSettings(),
-                command.getTokenSettings()
-            );
-        } else {
-            client = Client.create(
-                customerId,
-                command.getClientName(),
-                command.getClientSecret(),
-                command.getRedirectUris(),
-                command.getGrantTypes(),
-                command.getScopes()
-            );
-        }
+        // 시크릿 암호화
+        String encodedSecret = encodeClientPasswordPort.encodePassword(command.clientSecret());
 
-        // 저장
-        return clientRepository.save(client);
+        Client client = Client.create(
+                command.clientId(),
+                command.clientName(),
+                encodedSecret,
+                command.redirectUris(),
+                command.grantTypes(),
+                command.scopes(),
+                command.clientSettings(),
+                command.tokenSettings()
+        );
+
+        return clientOutPort.save(client);
+    }
+
+    @Override
+    public Optional<Client> getClientById(String clientId) {
+        return clientOutPort.findById(clientId);
     }
 }

@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * Client JPA Repository Interface
@@ -18,4 +19,6 @@ public interface ClientJpaRepository extends JpaRepository<ClientJpaEntity, Stri
     List<ClientJpaEntity> findAllByStatus(ClientStatus status);
 
     boolean existsByClientName(String clientName);
+
+    boolean existsAllByClientIdIn(Set<String> clientIds);
 }

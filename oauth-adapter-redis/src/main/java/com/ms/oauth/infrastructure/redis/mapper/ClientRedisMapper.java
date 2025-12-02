@@ -49,24 +49,24 @@ public class ClientRedisMapper {
             return null;
         }
 
-        return Client.builder()
-                .clientId(entity.getClientId())
-                .clientName(entity.getClientName())
-                .clientSecret(entity.getClientSecret())
-                .redirectUris(entity.getRedirectUris() != null
+        return new Client(
+                entity.getClientId(),
+                entity.getClientName(),
+                entity.getClientSecret(),
+                entity.getRedirectUris() != null
                         ? new HashSet<>(entity.getRedirectUris())
-                        : new HashSet<>())
-                .grantTypes(entity.getGrantTypes() != null
+                        : new HashSet<>(),
+                entity.getGrantTypes() != null
                         ? new HashSet<>(entity.getGrantTypes())
-                        : new HashSet<>())
-                .scopes(entity.getScopes() != null
+                        : new HashSet<>(),
+                entity.getScopes() != null
                         ? new HashSet<>(entity.getScopes())
-                        : new HashSet<>())
-                .status(entity.getStatus())
-                .clientSettings(entity.getClientSettings())
-                .tokenSettings(entity.getTokenSettings())
-                .createdAt(entity.getCreatedAt())
-                .updatedAt(entity.getUpdatedAt())
-                .build();
+                        : new HashSet<>(),
+                entity.getStatus(),
+                entity.getClientSettings(),
+                entity.getTokenSettings(),
+                entity.getCreatedAt(),
+                entity.getUpdatedAt()
+        );
     }
 }

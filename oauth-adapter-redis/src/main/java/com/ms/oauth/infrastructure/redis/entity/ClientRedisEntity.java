@@ -2,6 +2,7 @@ package com.ms.oauth.infrastructure.redis.entity;
 
 import com.ms.oauth.core.domain.client.ClientSettings;
 import com.ms.oauth.core.domain.client.ClientStatus;
+import com.ms.oauth.core.domain.client.GrantType;
 import com.ms.oauth.core.domain.client.TokenSettings;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -39,7 +40,7 @@ public class ClientRedisEntity {
     private Set<String> redirectUris = new HashSet<>();
 
     @Builder.Default
-    private Set<String> grantTypes = new HashSet<>();
+    private Set<GrantType> grantTypes = new HashSet<>();
 
     @Builder.Default
     private Set<String> scopes = new HashSet<>();
