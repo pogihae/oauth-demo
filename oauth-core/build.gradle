@@ -19,4 +19,7 @@ dependencies {
 
     // Transaction (for @Transactional)
     implementation 'org.springframework:spring-tx'
+
+    // Spring Boot JSON starter (includes Jackson)
+    implementation 'org.springframework.boot:spring-boot-starter-json'
 }
