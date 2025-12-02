@@ -1,7 +1,6 @@
 package com.ms.oauth.infrastructure.redis.port;
 
 import com.ms.oauth.core.domain.client.Client;
-import com.ms.oauth.core.domain.client.ClientId;
 
 import java.util.Optional;
 
@@ -15,7 +14,7 @@ public interface ClientCachePort {
     /**
      * Cache에서 Client 조회
      */
-    Optional<Client> findById(ClientId clientId);
+    Optional<Client> findById(String clientId);
 
     /**
      * Client를 Cache에 저장
@@ -30,7 +29,7 @@ public interface ClientCachePort {
     /**
      * Cache에서 Client 삭제
      */
-    void evict(ClientId clientId);
+    void evict(String clientId);
 
     /**
      * 모든 Client Cache 삭제

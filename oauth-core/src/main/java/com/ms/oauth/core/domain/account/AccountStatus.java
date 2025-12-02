@@ -5,6 +5,5 @@ package com.ms.oauth.core.domain.account;
  */
 public enum AccountStatus {
     ACTIVE,
-    INACTIVE,
-    LOCKED
+    INACTIVE
 }

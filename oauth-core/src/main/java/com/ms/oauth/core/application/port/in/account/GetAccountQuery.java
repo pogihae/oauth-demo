@@ -20,7 +20,8 @@ public interface GetAccountQuery {
     Optional<Account> getAccountByEmail(String email);
 
     /**
-     * Customer의 모든 Account 조회
+     * PhoneNo로 Account 조회
      */
-    java.util.List<Account> getAccountsByCustomerId(String customerId);
+    Optional<Account> getAccountByPhoneNo(String phoneNo);
+
 }

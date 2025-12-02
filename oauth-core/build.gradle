@@ -11,9 +11,6 @@ jar {
 }
 
 dependencies {
-    // JPA Annotations only (no implementation)
-    compileOnly 'jakarta.persistence:jakarta.persistence-api'
-
     // Validation
     implementation 'org.springframework.boot:spring-boot-starter-validation'
 

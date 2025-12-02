@@ -3,8 +3,7 @@ package com.ms.oauth.core.application.port.in.client;
 import com.ms.oauth.core.domain.client.ClientSettings;
 import com.ms.oauth.core.domain.client.GrantType;
 import com.ms.oauth.core.domain.client.TokenSettings;
-import com.ms.oauth.core.domain.common.validation.ValidClientSecret;
-import com.ms.oauth.core.domain.common.validation.ValidName;
+import com.ms.oauth.core.common.validation.ValidName;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Builder;
@@ -24,7 +23,6 @@ public class RegisterClientCommand {
     @ValidName
     private final String clientName;
 
-    @ValidClientSecret
     private final String clientSecret;
 
     @NotEmpty(message = "At least one redirect URI is required")

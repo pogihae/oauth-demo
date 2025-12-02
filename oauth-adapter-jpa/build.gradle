@@ -17,9 +17,10 @@ dependencies {
     // Spring Data JPA
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
-    // H2 Database (개발용)
-    runtimeOnly 'com.h2database:h2'
+    // Jackson for JSON serialization
+    implementation 'com.fasterxml.jackson.core:jackson-databind'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
 
-    // MySQL Driver (운영용)
+    // MySQL Driver
     runtimeOnly 'com.mysql:mysql-connector-j'
 }
