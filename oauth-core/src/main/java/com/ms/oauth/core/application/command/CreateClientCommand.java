@@ -1,4 +1,4 @@
-package com.ms.oauth.core.application.port.in.client;
+package com.ms.oauth.core.application.command;
 
 import com.ms.oauth.core.domain.client.ClientSettings;
 import com.ms.oauth.core.domain.client.GrantType;
@@ -16,7 +16,7 @@ import java.util.Set;
  */
 @Getter
 @Builder
-public class RegisterClientCommand {
+public class CreateClientCommand {
     @NotBlank(message = "Customer ID is required")
     private final String customerId;
 

@@ -1,6 +1,6 @@
 package com.ms.oauth.core.application.service;
 
-import com.ms.oauth.core.application.port.in.client.RegisterClientCommand;
+import com.ms.oauth.core.application.command.CreateClientCommand;
 import com.ms.oauth.core.application.port.in.client.CreateClientUseCase;
 import com.ms.oauth.core.domain.client.*;
 import com.ms.oauth.core.domain.customer.CustomerId;
@@ -25,7 +25,7 @@ public class ClientService implements CreateClientUseCase {
      */
     @Override
     @Transactional
-    public Client register(@Valid RegisterClientCommand command) {
+    public Client register(@Valid CreateClientCommand command) {
 
         // Client 생성
         Client client;

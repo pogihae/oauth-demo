@@ -1,6 +1,6 @@
 package com.ms.oauth.core.application.service;
 
-import com.ms.oauth.core.application.command.AddAccountCommand;
+import com.ms.oauth.core.application.command.CreateAccountCommand;
 import com.ms.oauth.core.application.port.in.account.*;
 import com.ms.oauth.core.application.port.in.account.EncodePasswordPort;
 import com.ms.oauth.core.application.port.out.ClientOutPort;
@@ -37,7 +37,7 @@ public class AccountService implements CreateAccountUseCase, GetAccountQuery {
      */
     @Override
     @Transactional
-    public Account addAccount(@Valid AddAccountCommand command) {
+    public Account addAccount(@Valid CreateAccountCommand command) {
 
         // Account ID 중복 확인
         if (accountOutPort.existsById(command.accountId())) {
