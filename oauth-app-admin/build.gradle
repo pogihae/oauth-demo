@@ -6,10 +6,6 @@ dependencies {
     // Core Module (Domain + Application Logic)
     implementation project(':oauth-core')
 
-    // Infrastructure Modules (Adapters)
-    implementation project(':oauth-adapter-jpa')
-    implementation project(':oauth-adapter-redis')
-
     // Spring Web MVC
     implementation 'org.springframework.boot:spring-boot-starter-webmvc'
 

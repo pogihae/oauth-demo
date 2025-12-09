@@ -1,5 +1,6 @@
 package com.ms.oauth.core.domain.client;
 
+import jakarta.persistence.Entity;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -10,6 +11,7 @@ import java.util.Set;
  * OAuth Client Aggregate Root (Pure Domain Model)
  * OAuth 클라이언트를 나타내는 순수 도메인 모델
  */
+@Entity
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
